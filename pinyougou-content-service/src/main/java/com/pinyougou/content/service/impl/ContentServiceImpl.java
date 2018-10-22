@@ -129,7 +129,7 @@ public class ContentServiceImpl implements ContentService {
 		List<TbContent> list = (List<TbContent>) redisTemplate.boundHashOps("content").get(categoryId);
 		if (list == null)
 		{
-			System.out.println("从数据库中取");
+			System.out.println("from database");
 			TbContentExample example = new TbContentExample();
 			Criteria criteria = example.createCriteria();
 			criteria.andCategoryIdEqualTo(categoryId);
@@ -139,7 +139,7 @@ public class ContentServiceImpl implements ContentService {
 			list = contentMapper.selectByExample(example);
 		}else
 		{
-			System.out.println("从缓存中取");
+			System.out.println("from redis");
 		}
 
 		return list;
